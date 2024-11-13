@@ -9,23 +9,27 @@ class Scaffale{
         nLibri=0;
     }
     public boolean aggiungi(Libro l){
-        for(int i=o;i<nLibri;i++){
-            if(libri[i].getAutore().equals(autore)){
+            if(nLibri<N){
+                nLibri++;
+                return true;
                 s+=libri[i].toString()+"\n";
             }
-        
-        }
+            return false;
     }
     
-    public void elencaLibri(String autore){
-        String s=new String();
-        for(int i=0; i<nLibri;i++){
-            if(libro[i].getPrezzo()>da&&libri[i].getPrezzo()<=a){
-                s+=libri[i].toString()+"\n";
-            }    
+    public void elencaLibri(){
+        System.out.println("scaffale: "+id);
+        for(int i=0; i< nLibri; i++){
+            System.out.println(libri[i]);
         }
-  }
-    public String toString(){
-        return String.format("ID scaffale:%s\n",id);
+    }
+    public void elencaLibri(String autore){
+        System.out.println("Ecco tutti i libri con autore: "+autore);
+        for(int i=0;i<nLibri; i++){
+            if(libri[i].getAutore().equals(autore)){
+                System.out.println(libro[i]);
+            }
+        }
     }
 }
+

@@ -1,16 +1,55 @@
-class Main{
+import java.util.Scanner;
+public class Main{
     public static void main(String args[]){
-        Scaffale scaffale=new Scaffale("scaffale A");
-        Libro libro1=new Libro("The Wolf","Jordan Belfort",20f,519,"Bantam Books");
-        Libro libro2=new Libro("Io Robot","Isaac Asimov",11.90f,252,"Mondadori");
-        Libro libro3=new Libro("Harry Potter e la pietra filosofale","J.K. Rowling",8.50f,320,"Salani");
-        Libro libro4=new Libro("Il Nido","Kenneth Oppel",9.35f,252,"Feltrinelli");
-        Libro libro5=new Libro("Il Decameron","Giovanni Boccaccio",15.30f,1851,"Rizzoli");
-        scaffale.aggiungi(libro1);
-        scaffale.aggiungi(libro2);
-        scaffale.aggiungi(libro3);
-        scaffale.aggiungi(libro4);
-        scaffale.aggiungi(libro5);
-        scaffale.elencaLibri();
+        Scanner tastiera =new Scanner(System.in);
+        int scelta;
+        Scaffale scaffale =new Scaffale("01");
+        do{
+            menu();
+            System.out.println("Inserisci scelta: ");
+            scelta = tastiera.nextInt();
+            tastiera.nextLine();
+            switch(scelta){
+                case 1:
+                    System.out.println("Scrivi il titolo del libro"); 
+                    String titolo = tastiera.nextLine();
+
+                    System.out.println("Inserisci l'autore"); String autore = tastiera.nextLine();
+
+                    System.out.println("Inserisci il prezzo");
+                    float prezzo = tastiera.nextFloat();
+                
+                    System.out.println("Inserisci il numero di pagine"); 
+                    int npag=tastiera.nextInt();
+                    tastiera.nextLine();
+
+                    System.out.println("Inserisci l'editore");
+                    String editore = tastiera.nextLine();
+
+                    Libro libro = new Libro(titolo, autore, prezzo, npag, editore);
+                    scaffale.aggiungi (libro);
+                    break;
+                case 2:
+                    autore=tastiera.nextLine();
+                    scaffale.elencaLibri(autore);
+                    System.out.println("\n");
+                case 3:
+                    scaffale.elencaLibri();
+                case 0:
+                    break;
+                default:
+                    System.out.println("Scelta errata, riprova");
+                    break;
+            
+            }
+        }while(scelta !=0);
+    }
+    private static void menu(){
+        System.out.println("------------");
+        System.out.println("1) Inserisci il libro");
+        System.out.println("2) Inserisci il libro per autore");
+        System.out.println("3) Elenca libri");
+        System.out.println("0. Uscita");
+        System.out.println("------------");
     }
 }
